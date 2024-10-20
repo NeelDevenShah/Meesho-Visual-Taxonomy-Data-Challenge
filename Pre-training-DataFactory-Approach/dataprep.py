@@ -1,15 +1,15 @@
 import csv
 import json
 import os
+import re
 
 # TODO: Take care of the length in the inferene submission thing
 # TODO: Make the entry of dummy vaible for the cases where there is null values
 
 # Paths
-# TODO: Change according the env settings
-csv_file_path = 'data/processed_train.csv'  # Path to your CSV file
-image_folder_path = '/scratch/m23csa016/aml/train'  # Folder where your images are stored
-output_json_file = 'data/processed_train.json'  # Output JSON file
+csv_file_path = '/content/Meesho-Data-Challenge/data/train.csv'  # Path to your CSV file
+image_folder_path = '/content/Meesho-Data-Challenge/data/train_images'  # Folder where your images are stored
+output_json_file = '/content/Meesho-Data-Challenge/data/processed_train.json'  # Output JSON file
 
 # Initialize list to store the dataset
 dataset = []
@@ -54,13 +54,12 @@ def start_process():
         
         for row in reader:
             # Extract image filename from the image link
-            image_url = row['id'] + '.jpg'
+            image_url = row['id']
 
-            image_url = (6-len(image_url))*'0' + image_url
+            image_url = image_url.zfill(6) + '.jpg'
 
             # Construct the image path in your train folder
-            image_path = os.path.join(image_folder_path, image_filename)
-
+            image_path = os.path.join(image_folder_path, image_url)
             # Ensure the image exists in the train/ folder before adding to the dataset
             if os.path.exists(image_path):  
 
@@ -94,10 +93,13 @@ def start_process():
                 # Add the conversation to the dataset
                 dataset.append(conversation)
             else:
-                print(f"Image {image_filename} not found in {image_folder_path}, skipping.")
+                print(f"Image {image_url} not found in {image_folder_path}, skipping.")
 
     # Save the dataset to a JSON file
     with open(output_json_file, 'w') as json_file:
         json.dump(dataset, json_file, indent=4)
 
     print(f"Dataset successfully saved to {output_json_file}")
+
+if __name__ == "__main__":
+  start_process()

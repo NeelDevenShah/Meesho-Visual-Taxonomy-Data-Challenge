@@ -39,3 +39,6 @@ def make_finetuning():
 
     # Run the training command
     subprocess.run(["llamafactory-cli", "train", "train_qwen2vl.json"])
+
+if __name__ == '__main__':
+    make_finetuning()
