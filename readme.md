@@ -2,7 +2,7 @@
 
 **Members:**
 
-- Neel Shah (Email: neeldevenshah@gmail.com)
+- Neel Shah (Email: neeldevenshah.ai@gmail.com)
 - Sneh Shah (Email: 22aiml049@charuat.edu.in)
 - Harsh Maheshwari (Email: 22aiml019@charusat.edu.in)
 
@@ -17,6 +17,10 @@ This repository contains the code and methodologies developed for the **Meesho V
 Have you ever encountered a product on an e-commerce website where the image shows a short-sleeve shirt, but the description states full-sleeve? Predicting such attributes accurately from supplier-uploaded images is critical for any e-commerce platform. Suppliers are required to fill in various attribute details when uploading their products for listing. However, this often results in incorrect or incomplete information.
 
 This challenge motivated the release of a subset of the Meesho product dataset to encourage innovative solutions for attribute prediction in the Indian market.
+
+**Dataset Overview**
+
+![Data Set Overview](./Docs/dataset-info.png)
 
 ---
 
@@ -46,6 +50,8 @@ Our approach used a deep learning pipeline with the following highlights:
 
 ---
 
+## TODO Detailed Report: [Report](./convexNet-based/v5/half_training_after_first_model-with-optimized-train-loop.ipynb)
+
 ## Bug Found During Training
 
 During the third iteration of training, we encountered a **bug** in the following code statement:
@@ -57,6 +63,30 @@ model.module.load_state_dict(torch.load(BEST_MODEL_FROM_BASE_FIRST_TRAINING, map
 Initially, the strict parameter was set to True, which caused an error while loading the model state. To solve the issue, we set strict=False, allowing mismatched keys between the loaded weights and the model architecture to bypass the error. However, this introduced unexpected changes to the model architecture.
 
 We suspect that these changes may have affected the training process slightly, potentially causing a 1–2% deviation in the final model's performance during the third iteration. This issue was not present in the second iteration of training, which was error-free and robust. Despite this, the overall model performance remained competitive, as evident from the results.
+
+---
+
+## How to Run the code?
+
+**Instructions**
+
+1. If you want to set up the custom environment as that of Kaggle used by us, then you can use the Docker file `gcr.io/kaggle-gpu-images/python`.
+2. Change the `input_path` and `working_path` variables according to your environment.
+3. Change the `test_c_name` variable from the options [`c1`, `c2`, `c3`, `c4`, `c5`]. The notebook is configured to train a single model at a time, where `c1` represents Men Tshirt, `c2` represents Sarees, `c3` represents Kurtis, `c4` represents Women Tshirt, and `c5` represents Women Tops and Tunics.
+4. Change the `NUM_EPOCH` as per the available GPUs for the initial stage training (T1). By default, it is set to `4`. The results attached are for 12 epochs for each category (c1, c2, c3, c4, and c5), based on the 12-hour limit of the Kaggle notebook. Adjust it according to your available GPUs.
+5. Change the `NUM_ATTR_EPOCHS` as per the available GPUs for the second stage training (T2). By default, it is set to `1`. The results attached are for 3 epochs for each category (c1, c2, c3, c4, and c5), based on the 12-hour limit of the Kaggle notebook. Adjust it according to your available GPUs.
+6. You are ready to go.
+
+**Training Code**
+
+The link to the main notebook for the first half of training: [T1 Training Code](./convexNet-based/v5/new-custom-loss-finetune-512.ipynb)
+
+The link to the main notebook for the second half of training: [T2 Training Code](./convexNet-based/v5/half_training_after_first_model-with-optimized-train-loop.ipynb)
+
+**Infernce Code Including the post-processing**
+
+1. Download the weights from the google drive (link: https://drive.google.com/drive/folders/1tRd7yV-L63Wv4T_8sogffr410eRfIGmS?usp=sharing) and setup the `input_path`, `working_path` accordingly as per the instructions written in the above sections.
+2. TODO: The link to the inference notebook which also includes the post-processing and directly gives output in csv file: [Inference Code](./convexNet-based/v5/half_training_after_first_model-with-optimized-train-loop.ipynb)
 
 ---
 
@@ -157,10 +187,6 @@ One of the promising experiments we plan to revisit is **Vision-Language Modelin
 - Resized images to **512x512 pixels** for enhanced feature extraction.
 
 ---
-
-## The link to the main notebook is (for the first half of training): [./convexNet-based/v5/new-custom-loss-finetune-512.ipynb](./convexNet-based/v5/new-custom-loss-finetune-512.ipynb)
-
-## The link to the main notebook is (for the second half of training): [./convexNet-based/v5/half_training_after_first_model-with-optimized-train-loop.ipynb](./convexNet-based/v5/half_training_after_first_model-with-optimized-train-loop.ipynb)
 
 Conclusion
 
