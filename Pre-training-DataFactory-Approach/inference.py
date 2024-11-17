@@ -11,15 +11,15 @@ import torch
 
 # Load the base model (e.g., Qwen2-VL-7B-Instruct)
 model_name = "Qwen/Qwen2-VL-7B-Instruct"
-cache_dir="/scratch/m23csa016/"  # TODO
+cache_dir="/content/new_cache_dir/"
 # Load the PEFT adapter
-adapter_path = "/scratch/m23csa016/training/checkpoint-100/" # TODO
-inference_csv_file = "/csehome/m23csa016/AML/student_resource3/dataset/test.csv"
+adapter_path = "/content/new_cache_dir/training/checkpoint-100/"
+inference_csv_file = "/content/Meesho-Data-Challenge/data/test.csv"
 
 output_file = "test_inf.csv"
 fieldnames = ['index', 'prediction']
 
-image_path_template = f"/scratch/m23csa016/aml/test/{image_name}"
+image_path_template = f"/content/new_cache_dir/aml/test/{image_name}"
 
 # Example usage of processing chunks and writing to a file
 chunk_size = 1  # Adjust based on your GPU memory

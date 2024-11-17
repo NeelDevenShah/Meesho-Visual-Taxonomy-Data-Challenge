@@ -6,13 +6,13 @@ from dataprep import start_process
 
 # TODO
 zip_file_path = "/content/drive/MyDrive/Meesho Hackathon/visual-taxonomy.zip"
-output_dir = "/content/new_data"
+output_dir = "/content/Meesho-Data-Challenge/data/"
 
 def checkgpu():
     try:
         assert torch.cuda.is_available() is True
     except AssertionError:
-        print("Please set up a GPU before using LLaMA Factory: https://medium.com/mlearning-ai/training-yolov4-on-google-colab-316f8fff99c6")
+        print("Please set up a GPU before using LLaMA Factory")
 
     print("Unzipping completed!")
 
