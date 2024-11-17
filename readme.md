@@ -50,7 +50,7 @@ Our approach used a deep learning pipeline with the following highlights:
 
 ---
 
-## TODO Detailed Report: [Report](./convexNet-based/v5/half_training_after_first_model-with-optimized-train-loop.ipynb)
+## Detailed Report: [Report](./Docs/Team%20ML%20Maverick%20Report.docx.pdf)
 
 ## Bug Found During Training
 
@@ -85,18 +85,30 @@ The link to the main notebook for the second half of training: [T2 Training Code
 
 **Infernce Code Including the post-processing**
 
-1. Download the weights from the google drive (link: https://drive.google.com/drive/folders/1tRd7yV-L63Wv4T_8sogffr410eRfIGmS?usp=sharing) and setup the `input_path`, `working_path` accordingly as per the instructions written in the above sections.
-2. TODO: The link to the inference notebook which also includes the post-processing and directly gives output in csv file: [Inference Code](./convexNet-based/v5/half_training_after_first_model-with-optimized-train-loop.ipynb)
+1. If you want to set up the custom environment as that of Kaggle used by us, then you can use the Docker file `gcr.io/kaggle-gpu-images/python`.
+2. Download the weights from the google drive (link: https://drive.google.com/drive/folders/1tRd7yV-L63Wv4T_8sogffr410eRfIGmS?usp=sharing).
+3. setup the `input_path`, `working_path` accordingly as per the instructions written in the above sections, and make sure that the csv files and model weights are available at that path.
+4. The link to the inference notebook which also includes the post-processing and directly gives output in csv file: [Inference Code](./inference.ipynb)
 
 ---
 
 ## Results
 
-Our model achieved a **23rd position** on the private leaderboard with a final F1-score of **0.7693**, trailing the top-performing team by only **0.0327**. Despite this, the solution excelled in deployment-friendly performance, requiring minimal GPU resources while maintaining high inference speeds.
+Our model achieved a **23rd position** on the private leaderboard with a final F1-score of **76.93%**, trailing the top-performing team by only **3.27%**. Despite this, the solution excelled in deployment-friendly performance, requiring minimal GPU resources while maintaining high inference speeds.
 
-### Evaluation Metrics per Attribute
+### Evaluation Metrics per Attribute as per Validation Dataset
 
-#### Category 1 (Men Tshirts):
+#### Evaluation:
+
+| Category            | Micro-F1-score | Macro-F1-score | Harmonic mean of micro and macro f1 score |
+| ------------------- | -------------- | -------------- | ----------------------------------------- |
+| Men Tshirts         | 0.972          | 0.967          | 0.969                                     |
+| Sarees              | 0.754          | 0.534          | 0.6252                                    |
+| Kurtis              | 0.929          | 0.888          | 0.908                                     |
+| Women Tshirts       | 0.901          | 0.766          | 0.828                                     |
+| Women Tops & Tunics | 0.913          | 0.854          | 0.882                                     |
+
+#### Detailed metrics for Category 1 (Men Tshirts):
 
 | Attribute | Val Loss | Val Accuracy | Weighted F1-score | Micro F1-score | Macro F1-score | Harmonic Mean of F1 |
 | --------- | -------- | ------------ | ----------------- | -------------- | -------------- | ------------------- |
@@ -107,7 +119,7 @@ Our model achieved a **23rd position** on the private leaderboard with a final F
 | attr_5    | 0.0140   | 0.9983       | 0.9983            | 0.9983         | 0.9919         | 0.9951              |
 | average   | 0.0962   | 0.9721       | 0.9722            | 0.9721         | 0.9672         | 0.9696              |
 
-#### Category 2 (Sarees):
+#### Detailed metrics for Category 2 (Sarees):
 
 | Attribute | Val Loss | Val Accuracy | Weighted F1-Score | Micro F1-Score | Macro F1-Score | Harmonic Mean of F1 |
 | --------- | -------- | ------------ | ----------------- | -------------- | -------------- | ------------------- |
@@ -123,7 +135,7 @@ Our model achieved a **23rd position** on the private leaderboard with a final F
 | attr_10   | 0.3686   | 0.8343       | 0.7626            | 0.8343         | 0.4711         | 0.6021              |
 | average   | 0.6133   | 0.7542       | 0.7207            | 0.7542         | 0.5344         | 0.6184              |
 
-#### Category 3 (Kurtis):
+#### Detailed metrics for Category 3 (Kurtis):
 
 | Attribute | Val Loss | Val Accuracy | Weighted F1-Score | Micro F1-Score | Macro F1-Score | Harmonic Mean of F1 |
 | --------- | -------- | ------------ | ----------------- | -------------- | -------------- | ------------------- |
@@ -138,7 +150,7 @@ Our model achieved a **23rd position** on the private leaderboard with a final F
 | attr 9    | 0.0310   | 0.9925       | 0.9928            | 0.9925         | 0.9340         | 0.9624              |
 | average   | 0.2387   | 0.9298       | 0.9287            | 0.9298         | 0.8887         | 0.9080              |
 
-#### Category 4 (Women Tshirts):
+#### Detailed metrics for Category 4 (Women Tshirts):
 
 | Attribute | Val Loss | Val Accuracy | Weighted F1-Score | Micro F1-Score | Macro F1-Score | Harmonic Mean of F1 |
 | --------- | -------- | ------------ | ----------------- | -------------- | -------------- | ------------------- |
@@ -152,7 +164,7 @@ Our model achieved a **23rd position** on the private leaderboard with a final F
 | attr 8    | 0.2613   | 0.9375       | 0.9073            | 0.9375         | 0.4839         | 0.6383              |
 | average   | 0.3043   | 0.9016       | 0.8932            | 0.9016         | 0.7664         | 0.8232              |
 
-#### Category 5 (Women Tops & Tunics):
+#### Detailed metrics for Category 5 (Women Tops & Tunics):
 
 | Attribute | Val Loss | Val Accuracy | Weighted F1-Score | Micro F1-Score | Macro F1-Score | Harmonic Mean of F1 |
 | --------- | -------- | ------------ | ----------------- | -------------- | -------------- | ------------------- |
